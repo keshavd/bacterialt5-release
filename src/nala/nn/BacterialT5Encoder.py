@@ -15,7 +15,7 @@ class BacterialT5Encoder(ONNXBase):
             options=options,
             providers=providers,
         )
-        self.tokenizer = DNABertTokenizer()
+        self.tokenizer = DNABertTokenizer(add_sentinel=True)
         self.collate_fn = DataCollatorWithPadding(
             tokenizer=self.tokenizer, padding=True, return_tensors="np"
         )
