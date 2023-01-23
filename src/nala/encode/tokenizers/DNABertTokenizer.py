@@ -1,5 +1,5 @@
 from transformers import BertTokenizerFast
-from ...constants import dna_bert_tokenizer
+from src.nala.constants import dna_bert_tokenizer
 
 
 class DNABertTokenizer(BertTokenizerFast):

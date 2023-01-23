@@ -4,7 +4,7 @@ from tqdm import tqdm
 from transformers.data.data_collator import DataCollatorWithPadding
 from .bases.ONNXBase import ONNXBase
 from ..constants import bacterial_t5_encoder_onnx_fh
-from ..encode.tokenizers.DNABertTokenizer import DNABertTokenizer
+from src.nala.encode.tokenizers.DNABertTokenizer import DNABertTokenizer
 
 
 class BacterialT5Encoder(ONNXBase):
