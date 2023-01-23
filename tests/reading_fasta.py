@@ -11,10 +11,10 @@ Test FNA to DF function
 """
 def get_nucleotide_seq_length(fna_fh):
     from nala.seq.genome_processing import fna_to_df
-    from pathlib import Path
+    import os
 
-    path = Path(".")
-    df = fna_to_df(f"{path.absolute()}/{fna_fh}")
+    path = os.path.dirname(__file__)
+    df = fna_to_df(f"{path}/{fna_fh}")
     return df["nucleotide_seq"][0].__len__()
 
 
