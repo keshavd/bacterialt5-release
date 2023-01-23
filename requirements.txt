@@ -1,0 +1,8 @@
+tqdm~=4.62.3
+biopython
+pandas~=1.4.1
+transformers~=4.16.2
+onnxruntime~=1.10.0
+scipy~=1.8.0
+numpy~=1.21.6
+networkx~=2.7.1
