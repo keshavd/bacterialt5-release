@@ -1,8 +1,8 @@
 from ...structs import SequenceClassifierOutput
-from .ONNXBase import ONNXBase
+from .BertONNXBase import BertONNXBase
 
 
-class PairClassificationBase(ONNXBase):
+class PairClassificationBase(BertONNXBase):
     def get_output(self, input_a, input_b, token_type_ids=None):
         output = self.session.run(
             None,

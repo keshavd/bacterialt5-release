@@ -2,7 +2,7 @@ import onnxruntime as ort
 from ...structs import BaseModelOutputWithPooling
 
 
-class ONNXBase:
+class BertONNXBase:
     def __init__(
         self,
         onnx_fh,

@@ -1,8 +1,8 @@
-from .ONNXBase import ONNXBase
+from .BertONNXBase import BertONNXBase
 from ...structs import BaseModelOutputWithPooling
 
 
-class T5ONNXBase(ONNXBase):
+class T5ONNXBase(BertONNXBase):
     def get_output(self, input_ids, attention_mask, token_type_ids=None):
         if input_ids.shape[0] > self.max_batch_size:
             raise ValueError("Input batch size is greater than max batch size")
