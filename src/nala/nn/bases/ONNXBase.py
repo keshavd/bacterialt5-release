@@ -20,6 +20,9 @@ class ONNXBase:
     def setup(self):
         self.session = ort.InferenceSession(self.onnx_fh, self.options, self.providers)
 
+    def __call__(self, *args, **kwargs):
+        return self.get_output(*args, **kwargs)
+
     @staticmethod
     def split_dataframe(df, batch_size=32):
         batches = list()
