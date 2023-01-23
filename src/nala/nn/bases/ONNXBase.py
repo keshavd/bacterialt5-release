@@ -28,7 +28,7 @@ class ONNXBase:
             batches.append(df[i * batch_size : (i + 1) * batch_size])
         return batches
 
-    def get_output(self, input_ids, attention_mask, token_type_ids):
+    def get_output(self, input_ids, attention_mask):
         if input_ids.shape[0] > self.max_batch_size:
             raise ValueError("Input batch size is greater than max batch size")
         output = self.session.run(
@@ -36,7 +36,6 @@ class ONNXBase:
             {
                 "input_ids": input_ids,
                 "attention_mask": attention_mask,
-                "token_type_ids": token_type_ids,
             },
         )
         return BaseModelOutputWithPooling(
