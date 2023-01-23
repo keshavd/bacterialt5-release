@@ -29,7 +29,7 @@ def get_siamese_output(input_a, input_b, seq_max_length=69, kmer_size=6):
     )
     out_b = model.get_output(**tokens_b)["last_hidden_state"]
     siamese_model = SiamesePairClassificationHead()
-    siamese_out = siamese_model.get_output(out_a, out_b)
+    siamese_out = siamese_model.get_output(out_a, out_b)['logits']
     return siamese_out.shape
 
 
