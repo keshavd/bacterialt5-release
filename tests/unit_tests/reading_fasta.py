@@ -21,7 +21,7 @@ def get_nucleotide_seq_length(fna_fh):
 class TestReadingFasta(unittest.TestCase):
     @parameterized.expand(
         [
-            ("vancomycin.fasta", 65044),
+            ("../dat/vancomycin.fasta", 65044),
         ]
     )
     def test_reading_fasta(self, fna_fh, expected_length):

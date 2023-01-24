@@ -19,7 +19,7 @@ def get_broken_seqs(fna_fh, piece_count):
 class TestContigBreaking(unittest.TestCase):
     @parameterized.expand(
         [
-            ("vancomycin.fasta", 10),
+            ("../dat/vancomycin.fasta", 10),
         ]
     )
     def test_reading_fasta(self, fna_fh, piece_count):
