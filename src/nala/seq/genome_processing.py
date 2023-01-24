@@ -3,7 +3,7 @@ import xxhash as xxh
 import pandas as pd
 
 
-def fna_to_df(fna_fh) -> pd.DataFrame:
+def fna_to_df(fna_fh, break_fn=None) -> pd.DataFrame:
     """
     Generate a DataFrame from an FNA file
     :param fna_fh:
@@ -13,15 +13,28 @@ def fna_to_df(fna_fh) -> pd.DataFrame:
     contig_rows = []
     for c in contigs:
         nucleotide_seq = str(c.seq)
-        contig_id = str(c.id)
-        contig_len = len(nucleotide_seq)
-        row = {
-            "contig_id": contig_id,
-            "contig_len": contig_len,
-            "nucleotide_seq": nucleotide_seq,
-            "nuc_id": xxh.xxh32_intdigest(nucleotide_seq),
-        }
-        contig_rows.append(row)
+        if break_fn:
+            pieces = break_fn(nucleotide_seq)
+            for i, p in enumerate(pieces):
+                contig_id = "f{str(c.id)}_i"
+                contig_len = len(p)
+                row = {
+                    "contig_id": contig_id,
+                    "contig_len": contig_len,
+                    "nucleotide_seq": p,
+                    "nuc_id": xxh.xxh32_intdigest(p),
+                }
+                contig_rows.append(row)
+        else:
+            contig_id = str(c.id)
+            contig_len = len(nucleotide_seq)
+            row = {
+                "contig_id": contig_id,
+                "contig_len": contig_len,
+                "nucleotide_seq": nucleotide_seq,
+                "nuc_id": xxh.xxh32_intdigest(nucleotide_seq),
+            }
+            contig_rows.append(row)
     contig_df = pd.DataFrame(contig_rows)
     return contig_df
 
