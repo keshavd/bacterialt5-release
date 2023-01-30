@@ -3,14 +3,19 @@ import pandas as pd
 from tqdm import tqdm
 from transformers.data.data_collator import DataCollatorWithPadding
 from .bases.T5ONNXBase import T5ONNXBase
-from ..constants import bacterial_t5_encoder_onnx_fh
+from ..constants import model_lookup
 from ..encode.tokenizers.DNABertTokenizer import DNABertTokenizer
 
 
 class BacterialT5Encoder(T5ONNXBase):
-    def __init__(self, options=None, providers=["CPUExecutionProvider"]):
+    def __init__(
+        self,
+        version="v1",
+        options=None,
+        providers=["CPUExecutionProvider"],
+    ):
         super().__init__(
-            onnx_fh=bacterial_t5_encoder_onnx_fh,
+            onnx_fh=model_lookup[version]['encoder'],
             options=options,
             providers=providers,
         )
